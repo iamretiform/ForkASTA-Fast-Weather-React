@@ -8,24 +8,26 @@ const DEFAULT_PLACES = [
   { name: "CAPE CANAVERAL", zip: "32920" }
 ];
 
-class DashboardTitle extends Component {
+const APPLICATION_NAME = "···ForkASTA···ƒAST™···"
+
+class Welcome extends Component {
   render() {
     return (
-      <div className="DashboardTitle">
+      <div className="Welcome">
         <h2>Welcome to <br/>
-        <b>···ForkASTA···ƒAST™···</b></h2>
-        <h2/>
+        <b>{this.props.title}</b></h2>
       </div>
     )
   }
 }
-class DashboardSearch extends Component {
+
+//to be used for searching for a city
+class Search extends Component {
   render() {
     return (
-      <div className="DashboardSearch">
+      <div className="Search">
         <input/>
         <button>SEARCH</button>
-      {/*to be used for searching for a city*/}
       </div>
     )
   }
@@ -44,30 +46,71 @@ class DashboardActiveCity extends Component {
   }
 }
 
+// This is the component that calls
+// fetch (makes GET request) to the API. 
+class GetWeatherData extends Component {
+  constructor() {
+    super();
+    this.state = {
+      weatherData: null,
+    };
+  }
+  componentDidMount() {
+    const zip = this.props.zip;
+    const URL = "http://api.openweathermap.org/data/2.5/weather?q=" +
+      zip +
+      "&appid=e9ed86c3f9edf086eb52665e26c72844&units=imperial";
+
+    fetch(URL).then(res => res.json()).then(json => {
+      this.setState({ weatherData: json });
+    });
+  }
+  render() {
+    const weatherData = this.state.weatherData;
+    if (!weatherData) return <div>Loading</div>;
+    // return <div>{JSON.stringify(weatherData)}</div>;
+    const weather = weatherData.weather[0];
+    const iconUrl = "http://openweathermap.org/img/w/" + weather.icon + ".png";
+    return (
+      <div>
+        <h1>
+          {weather.main} in {weatherData.name}
+          <img src={iconUrl} alt={weatherData.description} />
+        </h1>
+        <p>Current: {weatherData.main.temp}°</p>
+        <p>High: {weatherData.main.temp_max}°</p>
+        <p>Low: {weatherData.main.temp_min}°</p>
+        <p>Wind Speed: {weatherData.wind.speed} mi/hr</p>
+      </div>
+    );
+  }
+}
+
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      activePlace: 0
+      activePlace: 0,
+      title: APPLICATION_NAME
     };
   }
   render() {
     const activePlace = this.state.activePlace;
     return (
       <div className="App">
-        <DashboardTitle/>
-          {DEFAULT_PLACES.map((place, index) => (
-            <button key={index} onClick={() => { this.setState({ 
-              activePlace: index });
-              console.log('Clicked index '+index);
-              }}
-            >
-            {place.name}
+        <Welcome title={this.state.title}/>
+            <GetWeatherData key={activePlace} zip={DEFAULT_PLACES[activePlace].zip}/>
+              {DEFAULT_PLACES.map((place, index) => (
+                <button key={index} 
+                  onClick={() => {this.setState(
+                    { activePlace: index })
+                  }}
+                > 
+            {place.name} 
             </button>
           ))}
           <br/>
-          <br/>
-          <DashboardSearch/>
+          <Search/>
           <DashboardActiveCity
                     key={activePlace}
                     name={DEFAULT_PLACES[activePlace].name}
