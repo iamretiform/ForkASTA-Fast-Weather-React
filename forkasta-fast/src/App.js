@@ -2,6 +2,17 @@ import React, { Component } from "react";
 import PlacesDashboard from './containers/PlacesDashboard';
 import "./App.css";
 
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <PlacesDashboard />
+      </div>
+    );
+  }
+}
+
+export default App;
 // const PLACES = [
 //   { city: "Chicago", country: "USA", zip: "94303" },
 //   { city: "San Jose", country: "USA", zip: "94088" },
@@ -112,15 +123,3 @@ import "./App.css";
 //   }
 // }
 
-
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <PlacesDashboard />
-      </div>
-    );
-  }
-}
-
-export default App;
