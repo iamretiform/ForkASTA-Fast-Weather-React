@@ -1,0 +1,1 @@
+export const PLACES_FETCHED = 'places.PLACES_FETCHED';
