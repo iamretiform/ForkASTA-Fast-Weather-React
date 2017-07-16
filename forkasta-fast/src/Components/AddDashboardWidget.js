@@ -1,21 +1,21 @@
 import React, { Component } from "react";
 
-class AddDashboard extends Component {
+class AddDashboardWidget extends Component {
   constructor(){
     super();
     this.state = {
-      newDashboard:{}
+      newDashboardWidget:{}
     }
   }
   handleSubmit(e){
     if(this.refs.place.value === ''){
       alert('Place is required');
     } else {
-      this.setState({newDashboard:{
+      this.setState({newDashboardWidget:{
         place: this.refs.place.value,
         category: this.refs.category.value
       }}, function(){
-        this.props.addDashboard(this.state.newDashboard);
+        this.props.addDashboardWidget(this.state.newDashboardWidget);
       })
     }
     e.preventDefault();
@@ -24,13 +24,18 @@ class AddDashboard extends Component {
     let categoryOptions = this.props.categories.map(category => {
       return <option key={category} value={category}>{category}</option>
     });
+    let placeOptions = this.props.places.map(place => {
+      return <option key={place.name} value={place.name}>{place.name}</option>
+    });
     return (
       <div>
-        <h3>Add Dashboard</h3>
+        <h3>Add DashboardWidget</h3>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <div>
             <label>Place (City,cc) <em>cc = countrycode</em></label><br />
-            <input type="text" ref="place" />
+            <select ref="place">
+              {placeOptions}
+            </select>
           </div>
           <div>
             <label>Category</label><br />
@@ -44,7 +49,7 @@ class AddDashboard extends Component {
     );
   }
 }
-AddDashboard.defaultProps = {
-  categories: ['Current', 'Forecast', 'Air', 'Map']
+AddDashboardWidget.defaultProps = {
+  categories: ['Current', 'Forecast', 'Air', 'Map'],
 }
-export default AddDashboard;
+export default AddDashboardWidget;

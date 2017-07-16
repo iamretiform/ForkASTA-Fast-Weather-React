@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Dashboards from "./Components/Dashboards";
-import AddDashboard from "./Components/AddDashboard";
+import DashboardWidgets from "./Components/DashboardWidgets";
+import AddDashboardWidget from "./Components/AddDashboardWidget";
 import Places from "./Components/Places"
 import AddPlace from "./Components/AddPlace"
 import "./App.css";
@@ -25,7 +25,7 @@ class App extends Component {
         id: 4887398
       }
       ],
-      dashboards: [
+      dashboardWidgets: [
       {
         place: "Roma,IT",
         id: 3169070,
@@ -51,16 +51,16 @@ class App extends Component {
     places.splice(index, 1);
     this.setState({places:places});
   }
-  handleAddDashboard(dashboard){
-    let dashboards = this.state.dashboards;
-    dashboards.push(dashboard);
-    this.setState({dashboards:dashboards});
+  handleAddDashboardWidget(dashboardWidget){
+    let dashboardWidgets = this.state.dashboardWidgets;
+    dashboardWidgets.push(dashboardWidget);
+    this.setState({dashboardWidgets:dashboardWidgets});
   }
-  handleDeleteDashboard(place){
-    let dashboards = this.state.dashboards;
-    let index = dashboards.findIndex(x => x.place === place);
-    dashboards.splice(index, 1);
-    this.setState({dashboards:dashboards});
+  handleDeleteDashboardWidget(place){
+    let dashboardWidgets = this.state.dashboardWidgets;
+    let index = dashboardWidgets.findIndex(x => x.place === place);
+    dashboardWidgets.splice(index, 1);
+    this.setState({dashboardWidgets:dashboardWidgets});
   }
   render() {
     return (
@@ -71,9 +71,9 @@ class App extends Component {
         <hr />
         <Places places={this.state.places} onDelete={this.handleDeletePlace.bind(this)} />
         <hr />
-        <AddDashboard addDashboard={this.handleAddDashboard.bind(this)}/>
+        <AddDashboardWidget places={this.state.places} addDashboardWidget={this.handleAddDashboardWidget.bind(this)}/>
         <hr />
-        <Dashboards dashboards={this.state.dashboards} onDelete={this.handleDeleteDashboard.bind(this)} />
+        <DashboardWidgets dashboardWidgets={this.state.dashboardWidgets} onDelete={this.handleDeleteDashboardWidget.bind(this)} />
       </div>
     );
   }

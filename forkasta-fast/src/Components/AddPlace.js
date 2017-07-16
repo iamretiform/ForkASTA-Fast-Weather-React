@@ -9,7 +9,7 @@ class AddPlace extends Component {
   }
   handleSubmit(e){
     if(this.refs.name.value === ''){
-      alert('Place is required');
+      alert('Name is required');
     } else {
       this.setState({newPlace:{
         name: this.refs.name.value
@@ -25,7 +25,7 @@ class AddPlace extends Component {
         <h3>Add Place</h3>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <div>
-            <label>Place (City,cc) <em>cc = countrycode</em></label><br />
+            <label>Place Name (City,cc) <em>cc = countrycode</em></label><br />
             <input type="text" ref="name" />
           </div>
           <input type="submit" value="Submit" />
