@@ -12,7 +12,7 @@ class Place extends Component {
           {this.props.place.name}
         </strong> »
         <br />
-        <a href="#" onClick={this.deletePlace.bind(this, this.props.place.name)}>Delete</a>
+        <button href="#" onClick={this.deletePlace.bind(this, this.props.place.name)}>Delete</button>
       </li>
     );
   }

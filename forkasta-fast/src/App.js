@@ -10,7 +10,7 @@ class App extends Component {
     super();
     this.state = {
       places: [],
-      dashboards: []
+      dashboardWidgets: []
     }
   }
   componentWillMount(){
@@ -65,7 +65,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        forkASTA-Fast
+        <div className="App-header">
+        forkASTA-Fast Weather
+        </div>
         <hr />
         <AddPlace addPlace={this.handleAddPlace.bind(this)}/>
         <hr />
@@ -91,8 +93,8 @@ export default App;
 // }
 // import Current from "./modules/current";
 // import Forecast from "./modules/forecast";
-// import { MuiThemeProvider } from 'material-ui/styles';
-// import Button from 'material-ui/Button';
+
+
 // import Toolbar from 'material-ui/Toolbar';
 
 // const PLACES = [
@@ -103,7 +105,7 @@ export default App;
 //   { city: "Roma", country: "IT", zip: "Not Applicable", id: 3169070 }
 // ];
 /*
-<MuiThemeProvider>
+
 <div>
 
 <Toolbar style={{borderStyle: "solid"}}>

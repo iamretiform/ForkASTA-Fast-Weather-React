@@ -13,7 +13,7 @@ class DashboardWidget extends Component {
         </strong> »
         {this.props.dashboardWidget.category}
         <br />
-        <a href="#" onClick={this.deleteDashboardWidget.bind(this, this.props.dashboardWidget.place)}>Delete</a>
+        <button href="#" onClick={this.deleteDashboardWidget.bind(this, this.props.dashboardWidget.place)}>Delete</button>
       </li>
     );
   }
