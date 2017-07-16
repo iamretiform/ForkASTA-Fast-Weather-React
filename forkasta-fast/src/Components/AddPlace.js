@@ -16,9 +16,12 @@ class AddPlace extends Component {
       console.log(URL)
       fetch(URL).then(res => res.json()).then(json => {
                     console.log(json);
-                    this.setState({ newPlace:{
+                    this.setState({newPlace:{
                                       id: json.list[0].id,
-                                      name: `${json.list[0].name},${json.list[0].sys.country}`}})
+                                      name: `${json.list[0].name},${json.list[0].sys.country}`,
+                                      lat: json.list[0].coord.lat,
+                                      lon: json.list[0].coord.lon
+                                  }})
       this.props.addPlace(this.state.newPlace);
       })
     e.preventDefault();

@@ -3,10 +3,6 @@
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
 
 .App-intro {
   font-size: large;
@@ -17,4 +13,20 @@ button, input {
   background-color: white;
   border-style: dotted;
 }
+#root > div > div.ui.grid > div.ui.header.App-header {
+  height: 80px;
+  padding: 1em;
+}
 
+.addPlaceMenu {
+  max-width: 25%;
+  min-width: 25%;
+}
+
+#root > div > div.ui.grid > div.ui.card > div{
+  min-height: 400px;
+}
+
+#root > div > div.DashboardWidgets {
+  padding: 20px;
+}
