@@ -1,17 +1,31 @@
 import React, { Component } from "react";
 import Dashboards from "./Components/Dashboards";
 import AddDashboard from "./Components/AddDashboard";
+import Places from "./Components/Places"
+import AddPlace from "./Components/AddPlace"
 import "./App.css";
 
 class App extends Component {
   constructor(){
     super();
     this.state = {
+      places: [],
       dashboards: []
     }
   }
   componentWillMount(){
-    this.setState({dashboards: [
+    this.setState({
+      places: [
+      {
+        name: "Roma,IT",
+        id: 3169070
+      }, 
+      {
+        name: "Chicago,US",
+        id: 4887398
+      }
+      ],
+      dashboards: [
       {
         place: "Roma,IT",
         id: 3169070,
@@ -26,6 +40,17 @@ class App extends Component {
       }
       ]});
   }
+  handleAddPlace(place){
+    let places = this.state.places;
+    places.push(place);
+    this.setState({places:places});
+  }
+  handleDeletePlace(name){
+    let places = this.state.places;
+    let index = places.findIndex(x => x.name === name);
+    places.splice(index, 1);
+    this.setState({places:places});
+  }
   handleAddDashboard(dashboard){
     let dashboards = this.state.dashboards;
     dashboards.push(dashboard);
@@ -34,13 +59,17 @@ class App extends Component {
   handleDeleteDashboard(place){
     let dashboards = this.state.dashboards;
     let index = dashboards.findIndex(x => x.place === place);
-    dashboards.splice(place, 1);
+    dashboards.splice(index, 1);
     this.setState({dashboards:dashboards});
   }
   render() {
     return (
       <div className="App">
         forkASTA-Fast
+        <hr />
+        <AddPlace addPlace={this.handleAddPlace.bind(this)}/>
+        <hr />
+        <Places places={this.state.places} onDelete={this.handleDeletePlace.bind(this)} />
         <hr />
         <AddDashboard addDashboard={this.handleAddDashboard.bind(this)}/>
         <hr />

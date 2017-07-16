@@ -11,9 +11,9 @@ class DashboardItem extends Component {
         <strong>
           {this.props.dashboard.place}
         </strong> »
-        <br /> 
         {this.props.dashboard.category}
-      <a href="#" onClick={this.deleteDashboard.bind(this, this.props.dashboard.place)}>X</a>
+        <br />
+        <a href="#" onClick={this.deleteDashboard.bind(this, this.props.dashboard.place)}>Delete</a>
       </li>
     );
   }
