@@ -3,6 +3,8 @@ import DashboardWidgets from "./Components/DashboardWidgets";
 import AddDashboardWidget from "./Components/AddDashboardWidget";
 import Places from "./Components/Places"
 import AddPlace from "./Components/AddPlace"
+import uuid from 'uuid';
+import { Button, Menu, Header } from 'semantic-ui-react'
 import "./App.css";
 
 class App extends Component {
@@ -27,12 +29,14 @@ class App extends Component {
       ],
       dashboardWidgets: [
       {
+        uuid: uuid.v4(),
         place: "Roma,IT",
         id: 3169070,
         category: "Current",
         data: "weather data for Rome"
       }, 
       {
+        uuid: uuid.v4(),
         place: "Chicago,US",
         id: 4887398,
         category: "Current",
@@ -56,18 +60,19 @@ class App extends Component {
     dashboardWidgets.push(dashboardWidget);
     this.setState({dashboardWidgets:dashboardWidgets});
   }
-  handleDeleteDashboardWidget(place){
+  handleDeleteDashboardWidget(uuid){
     let dashboardWidgets = this.state.dashboardWidgets;
-    let index = dashboardWidgets.findIndex(x => x.place === place);
+    let index = dashboardWidgets.findIndex(x => x.uuid === uuid);
     dashboardWidgets.splice(index, 1);
     this.setState({dashboardWidgets:dashboardWidgets});
   }
   render() {
     return (
       <div className="App">
-        <div className="App-header">
+        <Header className="App-header">
         forkASTA-Fast Weather
-        </div>
+        </Header>
+        <Menu >
         <hr />
         <AddPlace addPlace={this.handleAddPlace.bind(this)}/>
         <hr />
@@ -75,55 +80,10 @@ class App extends Component {
         <hr />
         <AddDashboardWidget places={this.state.places} addDashboardWidget={this.handleAddDashboardWidget.bind(this)}/>
         <hr />
+        </Menu>
         <DashboardWidgets dashboardWidgets={this.state.dashboardWidgets} onDelete={this.handleDeleteDashboardWidget.bind(this)} />
       </div>
     );
   }
 }
 export default App;
-
-
-// const activePlace = this.state.activePlace;
-// const forecastPlace = this.state.forecastPlace;
-// constructor() {
-//   super();
-//   this.state = {
-//     activePlace: 0,
-//   };
-// }
-// import Current from "./modules/current";
-// import Forecast from "./modules/forecast";
-
-
-// import Toolbar from 'material-ui/Toolbar';
-
-// const PLACES = [
-//   { city: "Chicago", country: "USA", zip: "94303" },
-//   { city: "San Jose", country: "USA", zip: "94088" },
-//   { city: "Santa Cruz", country: "USA", zip: "95062" },
-//   { city: "Honolulu", country: "USA", zip: "96803" }, 
-//   { city: "Roma", country: "IT", zip: "Not Applicable", id: 3169070 }
-// ];
-/*
-
-<div>
-
-<Toolbar style={{borderStyle: "solid"}}>
-  {PLACES.map((place, index) => (
-    <Button
-      key={index}
-      onClick={() => {
-        this.setState({ 
-          activePlace: index, city: place.city, country: place.country });
-      }}
-    >
-      {place.city}
-    </Button>
-  ))}
-  </Toolbar>
-  <hr />
-  </div>
-  <Current key={activePlace} zip={PLACES[activePlace].zip} />
-  <Forecast key={forecastPlace} zip={PLACES[activePlace].zip} />
-</MuiThemeProvider>
-*/

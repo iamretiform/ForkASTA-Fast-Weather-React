@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import uuid from 'uuid';
 
 class AddDashboardWidget extends Component {
   constructor(){
@@ -12,6 +13,7 @@ class AddDashboardWidget extends Component {
       alert('Place is required');
     } else {
       this.setState({newDashboardWidget:{
+        uuid: uuid.v4(),
         place: this.refs.place.value,
         category: this.refs.category.value
       }}, function(){

@@ -8,14 +8,6 @@
   height: 80px;
 }
 
-.App-header {
-  background-color: #48786A;
-  height: 50px;
-  padding: 20px;
-  color: white;
-  font-size: x-large;
-}
-
 .App-intro {
   font-size: large;
 }
@@ -25,3 +17,4 @@ button, input {
   background-color: white;
   border-style: dotted;
 }
+

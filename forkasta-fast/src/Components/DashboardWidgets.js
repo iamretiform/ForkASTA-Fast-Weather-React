@@ -9,9 +9,8 @@ class DashboardWidgets extends Component {
     let dashboardWidgets;
     if(this.props.dashboardWidgets){
       dashboardWidgets = this.props.dashboardWidgets.map(dashboardWidget => {
-        // console.log(dashboard);
         return (
-          <DashboardWidget onDelete={this.deleteDashboardWidget.bind(this)} key={dashboardWidget.place} dashboardWidget={dashboardWidget} />
+          <DashboardWidget onDelete={this.deleteDashboardWidget.bind(this)} key={dashboardWidget.uuid} dashboardWidget={dashboardWidget} />
           )
       });
     }

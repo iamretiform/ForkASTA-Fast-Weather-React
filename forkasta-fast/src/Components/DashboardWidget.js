@@ -7,13 +7,13 @@ class DashboardWidget extends Component {
   render() {
     return (
       <li className="DashboardWidget">
-        {this.props.dashboardWidget.id}:
+        {this.props.dashboardWidget.uuid}:{this.props.dashboardWidget.id}
         <strong>
           {this.props.dashboardWidget.place}
         </strong> »
         {this.props.dashboardWidget.category}
         <br />
-        <button href="#" onClick={this.deleteDashboardWidget.bind(this, this.props.dashboardWidget.place)}>Delete</button>
+        <button href="#" onClick={this.deleteDashboardWidget.bind(this, this.props.dashboardWidget.uuid)}>Delete</button>
       </li>
     );
   }
