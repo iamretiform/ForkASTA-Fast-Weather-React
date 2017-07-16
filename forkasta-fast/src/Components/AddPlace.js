@@ -6,19 +6,26 @@ class AddPlace extends Component {
     this.state = {
       newPlace:{}
     }
-  }
+  };
+
   handleSubmit(e){
     if(this.refs.name.value === ''){
       alert('Name is required');
     } else {
-      this.setState({newPlace:{
-        name: this.refs.name.value
-      }}, function(){
-        this.props.addPlace(this.state.newPlace);
+      const URL = `http://api.openweathermap.org/data/2.5/find?q=${this.refs.name.value}&appid=e9ed86c3f9edf086eb52665e26c72844&type=accurate&mode=JSON`
+      console.log(URL)
+      fetch(URL).then(res => res.json()).then(json => {
+                    console.log(json);
+                    this.setState({ newPlace:{
+                                      id: json.list[0].id,
+                                      name: `${json.list[0].name},${json.list[0].sys.country}`}})
+      this.props.addPlace(this.state.newPlace);
       })
-    }
     e.preventDefault();
+    }
   }
+
+
   render() {
     return (
       <div>

@@ -4,7 +4,7 @@ import AddDashboardWidget from "./Components/AddDashboardWidget";
 import Places from "./Components/Places"
 import AddPlace from "./Components/AddPlace"
 import uuid from 'uuid';
-import { Button, Menu, Header } from 'semantic-ui-react'
+import { Menu, Header } from 'semantic-ui-react'
 import "./App.css";
 
 class App extends Component {
@@ -44,41 +44,52 @@ class App extends Component {
       }
       ]});
   }
+
   handleAddPlace(place){
     let places = this.state.places;
     places.push(place);
     this.setState({places:places});
   }
+
   handleDeletePlace(name){
     let places = this.state.places;
     let index = places.findIndex(x => x.name === name);
     places.splice(index, 1);
     this.setState({places:places});
   }
+
   handleAddDashboardWidget(dashboardWidget){
     let dashboardWidgets = this.state.dashboardWidgets;
     dashboardWidgets.push(dashboardWidget);
     this.setState({dashboardWidgets:dashboardWidgets});
   }
+  
   handleDeleteDashboardWidget(uuid){
     let dashboardWidgets = this.state.dashboardWidgets;
     let index = dashboardWidgets.findIndex(x => x.uuid === uuid);
     dashboardWidgets.splice(index, 1);
     this.setState({dashboardWidgets:dashboardWidgets});
   }
+
   render() {
     return (
       <div className="App">
         <Header className="App-header">
         forkASTA-Fast Weather
         </Header>
-        <Menu >
+        <Menu>
         <hr />
+        <Menu.Item>
         <AddPlace addPlace={this.handleAddPlace.bind(this)}/>
+        </Menu.Item>
         <hr />
+        <Menu.Item>
         <Places places={this.state.places} onDelete={this.handleDeletePlace.bind(this)} />
+        </Menu.Item>
         <hr />
+        <Menu.Item>
         <AddDashboardWidget places={this.state.places} addDashboardWidget={this.handleAddDashboardWidget.bind(this)}/>
+        </Menu.Item>
         <hr />
         </Menu>
         <DashboardWidgets dashboardWidgets={this.state.dashboardWidgets} onDelete={this.handleDeleteDashboardWidget.bind(this)} />

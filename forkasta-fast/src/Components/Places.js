@@ -11,7 +11,7 @@ class Places extends Component {
       places = this.props.places.map(place => {
         console.log(place);
         return (
-          <Place onDelete={this.deletePlace.bind(this)} key={place.name} place={place} />
+          <Place onDelete={this.deletePlace.bind(this)} key={place.id} place={place} />
           )
       });
     }
