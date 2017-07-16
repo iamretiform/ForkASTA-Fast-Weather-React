@@ -43,7 +43,7 @@ class AddDashboardWidget extends Component {
             <label>Category</label><br />
             <select ref="category">
               {categoryOptions}
-            </select> 
+            </select>
           </div>
           <input type="submit" value="Submit" />
         </form>
